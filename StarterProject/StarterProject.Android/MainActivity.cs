@@ -7,6 +7,8 @@ using Prism.Ioc;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using Android.Runtime;
+using Plugin.Permissions;
+using Plugin.CurrentActivity;
 
 namespace StarterProject.Droid
 {
@@ -21,14 +23,17 @@ namespace StarterProject.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            UserDialogs.Init(() => (Activity)Forms.Context);
+
             Xamarin.Essentials.Platform.Init(this, bundle);
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, bundle);
+            UserDialogs.Init(() => CrossCurrentActivity.Current.Activity);
             LoadApplication(new App(new AndroidInitializer()));
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
