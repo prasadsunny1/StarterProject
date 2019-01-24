@@ -33,6 +33,7 @@ namespace StarterProject
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterSingleton<IPermissionServices,PermissionServices>();
+            containerRegistry.RegisterSingleton<IDialogsService,DialogsServices>();
         }
     }
 }

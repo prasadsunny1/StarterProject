@@ -11,41 +11,46 @@ namespace StarterProject.Services
 {
     public class PermissionServices : IPermissionServices
     {
+        IDialogsService _dialogsService;
+        public PermissionServices(IDialogsService dialogsService)
+        {
+            _dialogsService = dialogsService;
+        }
+
         public async Task<bool> HasPermisssion(Permission permission)
         {
-            try
+            if (!(await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(permission)))
             {
+            await CrossPermissions.Current.RequestPermissionsAsync(permission);
+            }
                 var status = await CrossPermissions.Current.CheckPermissionStatusAsync(permission);
+
                 if (status != PermissionStatus.Granted)
                 {
-                    var shouldShowRationale =
-                        await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(permission);
-                    if (shouldShowRationale)
-                    {
-//                    await DisplayAlert("We need to access this permission"+ permission.ToString(), "OK");
-                    }
-
-                    var results = await CrossPermissions.Current.RequestPermissionsAsync(permission);
-                    //Best practice to always check that the key exists
-                    if (results.ContainsKey(permission))
-                        status = results[permission];
+                   await RequestCameraPermissionAsync(permission);
                 }
+                status = await CrossPermissions.Current.CheckPermissionStatusAsync(permission);
+                return status == PermissionStatus.Granted;
+        }
 
-
-                if (status == PermissionStatus.Granted)
-                {
-                    return true;
-                }
-                else
-                {
-//                    show dialog Unable to get permission
-                    return false;
-                }
-            }
-            catch (Exception ex)
+        async Task RequestCameraPermissionAsync(Permission permission)
+        {
+            var shouldShowRathional = await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(permission);
+            if (! shouldShowRathional)
             {
-                Debug.WriteLine(ex);
-                throw;
+                var openSettings = await _dialogsService.QuestionAsync("We need this permission to do that.Please allow it from Settings>Permissions", AppResources.AppName, "Open Settings", "Later");
+                if (openSettings)
+                {
+                    CrossPermissions.Current.OpenAppSettings();
+                }               
+            }
+            else
+            {
+                var responce = await _dialogsService.QuestionAsync("Displaying Rationale", AppResources.AppName, "Grant", "Cancel");
+                if (responce)
+                {
+                var permissionInfo = await CrossPermissions.Current.RequestPermissionsAsync(permission);
+                }
             }
         }
     }
