@@ -1,5 +1,7 @@
 ﻿using Prism;
 using Prism.Ioc;
+using StarterProject.Interfaces;
+using StarterProject.Services;
 using StarterProject.ViewModels;
 using StarterProject.Views;
 using Xamarin.Forms;
@@ -30,6 +32,8 @@ namespace StarterProject
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterSingleton<IPermissionServices,PermissionServices>();
+            containerRegistry.RegisterSingleton<IDialogsService,DialogsServices>();
         }
     }
 }
