@@ -192,6 +192,12 @@
     <PackageReference Include="Acr.UserDialogs">
       <Version>7.0.1</Version>
     </PackageReference>
+    <PackageReference Include="MonkeyCache">
+      <Version>1.2.0-beta</Version>
+    </PackageReference>
+    <PackageReference Include="MonkeyCache.LiteDB">
+      <Version>1.2.0-beta</Version>
+    </PackageReference>
     <PackageReference Include="Plugin.Permissions">
       <Version>4.0.2-beta</Version>
     </PackageReference>

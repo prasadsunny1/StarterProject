@@ -5,9 +5,11 @@
              Title="{Binding Title}">
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
+        <Label Text="Time to call service :" />
+        <Label Text="{Binding StopwatchTime}" />
         <Button Text="Ask Permission" Command="{Binding AskPermission}"></Button>
         <Button Text="Services" Command="{Binding CallService}"></Button>
+        
     </StackLayout>
 
 </ContentPage>
