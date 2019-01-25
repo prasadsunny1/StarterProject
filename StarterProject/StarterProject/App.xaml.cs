@@ -1,4 +1,6 @@
-﻿using Prism;
+﻿using MonkeyCache;
+using MonkeyCache.LiteDB;
+using Prism;
 using Prism.Ioc;
 using Refit;
 using StarterProject.Interfaces;
@@ -27,6 +29,9 @@ namespace StarterProject
             InitializeComponent();
 
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            Barrel.ApplicationId = "com.companyname.appname";
+            Barrel.EncryptionKey = "com.companyname.appname";
+
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -35,6 +40,8 @@ namespace StarterProject
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterSingleton<IPermissionServices,PermissionServices>();
             containerRegistry.RegisterSingleton<IDialogsService,DialogsServices>();
+            containerRegistry.RegisterSingleton<IMovieRepository,MovieRepository>();
+            
             var api = RestService.For<IOmdbApi>(AppConstants.BaseUrl);
             containerRegistry.RegisterInstance<IOmdbApi>(api);
         }

@@ -3,6 +3,7 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
@@ -18,23 +19,33 @@ namespace StarterProject.ViewModels
         private IPermissionServices _permissionServices;
         private IOmdbApi _omdbApi;
         private IDialogsService _dialogsService;
-        public MainPageViewModel(INavigationService navigationService,IPermissionServices permissionServices,IOmdbApi omdbApi,IDialogsService dialogsService)
+        private IMovieRepository _movieRepository;
+        Stopwatch _sw = new Stopwatch();
+
+        public MainPageViewModel(INavigationService navigationService, IPermissionServices permissionServices,
+            IOmdbApi omdbApi, IDialogsService dialogsService, IMovieRepository movieRepository)
             : base(navigationService)
         {
             Title = "Main Page";
             _permissionServices = permissionServices;
             _omdbApi = omdbApi;
             _dialogsService = dialogsService;
+            _movieRepository = movieRepository;
         }
+
+        public string StopwatchTime { get; set; }
 
         public ICommand AskPermission
         {
-            get { return new Command(async () =>
+            get
             {
-                var permission = Permission.Camera;
-                var status = await _permissionServices.HasPermisssion(permission);
-                UserDialogs.Instance.Alert(permission.ToString() + status);
-            }); }
+                return new Command(async () =>
+                {
+                    var permission = Permission.Camera;
+                    var status = await _permissionServices.HasPermisssion(permission);
+                    UserDialogs.Instance.Alert(permission.ToString() + status);
+                });
+            }
         }
 
         public ICommand CallService
@@ -43,9 +54,11 @@ namespace StarterProject.ViewModels
             {
                 return new Command(async () =>
                 {
-                    var data = await _omdbApi.GetMoviesByTitle("a");
-                    await _dialogsService.AlertAsync(data);
-                   
+                   _sw.Start();
+                    var data = await _movieRepository.GetMovie("a");
+                    StopwatchTime = StopwatchTime + ( _sw.ElapsedMilliseconds.ToString() + ",");
+                    _sw.Reset();
+//                    await _dialogsService.AlertAsync(data);
                 });
             }
         }
