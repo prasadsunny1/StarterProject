@@ -1,5 +1,6 @@
 ﻿using Prism;
 using Prism.Ioc;
+using Refit;
 using StarterProject.Interfaces;
 using StarterProject.Services;
 using StarterProject.ViewModels;
@@ -34,6 +35,8 @@ namespace StarterProject
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterSingleton<IPermissionServices,PermissionServices>();
             containerRegistry.RegisterSingleton<IDialogsService,DialogsServices>();
+            var api = RestService.For<IOmdbApi>(AppConstants.BaseUrl);
+            containerRegistry.RegisterInstance<IOmdbApi>(api);
         }
     }
 }

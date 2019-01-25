@@ -6,7 +6,8 @@
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
         <Label Text="Welcome to Xamarin Forms and Prism!" />
-        <Button Text="Hello World" Command="{Binding AskPermission}"></Button>
+        <Button Text="Ask Permission" Command="{Binding AskPermission}"></Button>
+        <Button Text="Services" Command="{Binding CallService}"></Button>
     </StackLayout>
 
 </ContentPage>
