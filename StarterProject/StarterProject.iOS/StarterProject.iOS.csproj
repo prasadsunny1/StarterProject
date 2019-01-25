@@ -201,6 +201,9 @@
     <PackageReference Include="Plugin.Permissions">
       <Version>4.0.2-beta</Version>
     </PackageReference>
+    <PackageReference Include="Polly">
+      <Version>6.1.2</Version>
+    </PackageReference>
     <PackageReference Include="Refit">
       <Version>4.6.58</Version>
     </PackageReference>
