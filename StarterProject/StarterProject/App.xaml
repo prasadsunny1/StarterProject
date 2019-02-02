@@ -2,10 +2,13 @@
 <prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:converters="clr-namespace:StarterProject.Converters;assembly=StarterProject"
              x:Class="StarterProject.App">
 	<Application.Resources>
 
 		<!-- Application resource dictionary -->
 
+		<converters:EventArgsConverter x:Key="EventArgsConverter" />
 	</Application.Resources>
 </prism:PrismApplication>

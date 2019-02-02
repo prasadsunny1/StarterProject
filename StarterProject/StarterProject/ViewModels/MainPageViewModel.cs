@@ -1,4 +1,4 @@
-﻿using Prism.Commands;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
@@ -31,6 +31,8 @@ namespace StarterProject.ViewModels
             _omdbApi = omdbApi;
             _dialogsService = dialogsService;
             _movieRepository = movieRepository;
+
+            DataList = new List<string> {"hello", "World"};
         }
 
         public string StopwatchTime { get; set; }
@@ -47,7 +49,18 @@ namespace StarterProject.ViewModels
                 });
             }
         }
-
+        public ICommand ItemTappedCommand
+        {
+            get
+            {
+                return new Command<object>(async (pressedItem) =>
+                {    
+                    Debug.WriteLine(pressedItem);
+                });
+            }
+        }
+        
+        public List<string> DataList {get; set;}
         public ICommand CallService
         {
             get
