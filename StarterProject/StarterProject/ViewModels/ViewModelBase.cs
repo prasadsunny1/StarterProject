@@ -4,13 +4,14 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using StarterProject.Interfaces;
 
 namespace StarterProject.ViewModels
 {
     public class ViewModelBase : BindableBase, INavigationAware, IDestructible
     {
-        protected INavigationService NavigationService { get; private set; }
-
+        protected INavigationService Navigation { get; private set; }
+        protected  IDialogsService Dialogs { get; set; }
         private string _title;
         public string Title
         {
@@ -18,9 +19,10 @@ namespace StarterProject.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        public ViewModelBase(INavigationService navigationService)
+        public ViewModelBase(INavigationService navigationService,IDialogsService dialogsService)
         {
-            NavigationService = navigationService;
+            Navigation = navigationService;
+            Dialogs = dialogsService;
         }
 
         public virtual void OnNavigatedFrom(INavigationParameters parameters)

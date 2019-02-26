@@ -18,18 +18,16 @@ namespace StarterProject.ViewModels
     {
         private IPermissionServices _permissionServices;
         private IOmdbApi _omdbApi;
-        private IDialogsService _dialogsService;
         private IMovieRepository _movieRepository;
         Stopwatch _sw = new Stopwatch();
 
         public MainPageViewModel(INavigationService navigationService, IPermissionServices permissionServices,
             IOmdbApi omdbApi, IDialogsService dialogsService, IMovieRepository movieRepository)
-            : base(navigationService)
+            : base(navigationService,dialogsService)
         {
             Title = "Main Page";
             _permissionServices = permissionServices;
             _omdbApi = omdbApi;
-            _dialogsService = dialogsService;
             _movieRepository = movieRepository;
 
             DataList = new List<string> {"hello", "World"};
