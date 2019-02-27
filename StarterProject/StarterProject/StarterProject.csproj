@@ -5,8 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
-    <PackageReference Include="Fody" Version="4.0.0-beta.2" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.0.3" />
+    <PackageReference Include="Fody" Version="4.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="MethodDecorator.Fody" Version="1.0.2" />
     <PackageReference Include="Microsoft.AppCenter" Version="1.13.2" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.13.2" />
@@ -14,11 +17,11 @@
     <PackageReference Include="MonkeyCache" Version="1.2.0-beta" />
     <PackageReference Include="MonkeyCache.LiteDB" Version="1.2.0-beta" />
     <PackageReference Include="Plugin.Permissions" Version="4.0.2-beta" />
-    <PackageReference Include="Polly" Version="6.1.2" />
+    <PackageReference Include="Polly" Version="7.0.3" />
     <PackageReference Include="PropertyChanged.Fody" Version="2.6.0" />
-    <PackageReference Include="Refit" Version="4.6.58" />
+    <PackageReference Include="Refit" Version="4.6.90" />
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1029999" />
+    <PackageReference Include="Xamarin.Forms" Version="3.5.0.169047" />
     <PackageReference Include="Prism.Autofac.Forms" Version="7.1.0.431" />
   </ItemGroup>
 

@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs">
-      <Version>7.0.1</Version>
+      <Version>7.0.3</Version>
     </PackageReference>
     <PackageReference Include="MethodDecorator.Fody" Version="1.0.2" />
     <PackageReference Include="Microsoft.AppCenter" Version="1.13.2" />
@@ -73,8 +73,8 @@
     <PackageReference Include="Plugin.Permissions">
       <Version>4.0.2-beta</Version>
     </PackageReference>
-    <PackageReference Include="Polly" Version="6.1.2" />
-    <PackageReference Include="Refit" Version="4.6.58" />
+    <PackageReference Include="Polly" Version="7.0.3" />
+    <PackageReference Include="Refit" Version="4.6.90" />
     <PackageReference Include="Xamarin.Android.Support.Compat">
       <Version>28.0.0.1</Version>
     </PackageReference>
@@ -84,7 +84,7 @@
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.0.1</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1029999" />
+    <PackageReference Include="Xamarin.Forms" Version="3.5.0.169047" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.1" />
@@ -123,6 +123,9 @@
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
       <Name>StarterProject</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
