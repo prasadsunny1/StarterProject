@@ -61,6 +61,7 @@
     <PackageReference Include="Acr.UserDialogs">
       <Version>7.0.1</Version>
     </PackageReference>
+    <PackageReference Include="MethodDecorator.Fody" Version="1.0.2" />
     <PackageReference Include="Microsoft.AppCenter" Version="1.13.2" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.13.2" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.13.2" />

@@ -20,7 +20,7 @@ namespace StarterProject.ViewModels
         private IOmdbApi _omdbApi;
         private IMovieRepository _movieRepository;
         Stopwatch _sw = new Stopwatch();
-
+        [Insights]
         public MainPageViewModel(INavigationService navigationService, IPermissionServices permissionServices,
             IOmdbApi omdbApi, IDialogsService dialogsService, IMovieRepository movieRepository,IInsightService insightService)
             : base(navigationService,dialogsService,insightService)
