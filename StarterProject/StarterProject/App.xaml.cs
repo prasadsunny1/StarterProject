@@ -1,4 +1,7 @@
-﻿using MonkeyCache;
+﻿using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using MonkeyCache;
 using MonkeyCache.LiteDB;
 using Prism;
 using Prism.Ioc;
@@ -41,9 +44,18 @@ namespace StarterProject
             containerRegistry.RegisterSingleton<IPermissionServices,PermissionServices>();
             containerRegistry.RegisterSingleton<IDialogsService,DialogsServices>();
             containerRegistry.RegisterSingleton<IMovieRepository,MovieRepository>();
+            containerRegistry.RegisterSingleton<IInsightService,InsightService>();
             
             var api = RestService.For<IOmdbApi>(AppConstants.BaseUrl);
             containerRegistry.RegisterInstance<IOmdbApi>(api);
+        }
+
+
+        protected override void OnStart()
+        {
+            AppCenter.Start("ios={Your App Secret};android={Your App Secret}", typeof(Analytics), typeof(Crashes));
+
+            base.OnStart();
         }
     }
 }

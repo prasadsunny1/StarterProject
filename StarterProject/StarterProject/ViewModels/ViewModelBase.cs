@@ -11,7 +11,8 @@ namespace StarterProject.ViewModels
     public class ViewModelBase : BindableBase, INavigationAware, IDestructible
     {
         protected INavigationService Navigation { get; private set; }
-        protected  IDialogsService Dialogs { get; set; }
+        protected  IDialogsService Dialogs { get; private set; }
+        protected IInsightService Insights { get; private set; }
         private string _title;
         public string Title
         {
@@ -19,10 +20,11 @@ namespace StarterProject.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        public ViewModelBase(INavigationService navigationService,IDialogsService dialogsService)
+        public ViewModelBase(INavigationService navigationService,IDialogsService dialogsService,IInsightService insightService)
         {
             Navigation = navigationService;
             Dialogs = dialogsService;
+            Insights = insightService;
         }
 
         public virtual void OnNavigatedFrom(INavigationParameters parameters)

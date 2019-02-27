@@ -22,8 +22,8 @@ namespace StarterProject.ViewModels
         Stopwatch _sw = new Stopwatch();
 
         public MainPageViewModel(INavigationService navigationService, IPermissionServices permissionServices,
-            IOmdbApi omdbApi, IDialogsService dialogsService, IMovieRepository movieRepository)
-            : base(navigationService,dialogsService)
+            IOmdbApi omdbApi, IDialogsService dialogsService, IMovieRepository movieRepository,IInsightService insightService)
+            : base(navigationService,dialogsService,insightService)
         {
             Title = "Main Page";
             _permissionServices = permissionServices;
